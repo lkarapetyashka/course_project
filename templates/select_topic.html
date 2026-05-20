@@ -1,0 +1,68 @@
+{% extends "base.html" %}
+
+{% block title %}
+    {% if mode == "theory" %}
+        Выбор тем — Теория
+    {% else %}
+        Выбор тем — Практика
+    {% endif %}
+{% endblock %}
+
+{% block content %}
+<section class="page-title">
+    {% if mode == "theory" %}
+        <h1>Выбор тем для теории</h1>
+        <p>
+            Выберите одну или несколько тем. По каждой теме будет добавлено
+            10 случайных теоретических карточек.
+        </p>
+    {% else %}
+        <h1>Выбор тем для практики</h1>
+        <p>
+            Выберите одну или несколько тем. По каждой теме будет добавлено
+            10 случайных практических карточек.
+        </p>
+    {% endif %}
+</section>
+
+{% if error %}
+    <div class="alert alert-error">
+        {{ error }}
+    </div>
+{% endif %}
+
+{% if topics %}
+    <form class="topic-form" method="post" action="/attempt/start">
+        <input type="hidden" name="mode" value="{{ mode }}">
+
+        <div class="topics-list">
+            {% for topic in topics %}
+                <label class="topic-item">
+                    <input type="checkbox"
+                           name="topic_ids"
+                           value="{{ topic.id }}">
+
+                    <span>
+                        <strong>{{ topic.title }}</strong>
+
+                        {% if topic.description %}
+                            <small>{{ topic.description }}</small>
+                        {% endif %}
+                    </span>
+                </label>
+            {% endfor %}
+        </div>
+
+        <div class="form-actions">
+            <a class="button secondary" href="/">Назад</a>
+            <button class="button primary" type="submit">
+                Составить вариант
+            </button>
+        </div>
+    </form>
+{% else %}
+    <div class="alert">
+        Темы пока не добавлены в базу данных.
+    </div>
+{% endif %}
+{% endblock %}

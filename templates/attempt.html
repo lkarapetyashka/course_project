@@ -1,0 +1,102 @@
+{% extends "base.html" %}
+
+{% block title %}{{ attempt.title }}{% endblock %}
+
+{% block content %}
+<section class="attempt-page">
+    <div class="attempt-header">
+        <div>
+            <h1>{{ attempt.title }}</h1>
+
+            <p>
+                Всего карточек: {{ attempt.cards | length }}.
+                Ответы автоматически сохраняются в браузере.
+            </p>
+        </div>
+
+        <a class="button secondary leave-attempt-link" href="/">
+            На главную
+            
+        </a>
+    </div>
+
+    <section id="result-panel" class="result-panel" hidden>
+    </section>
+
+    <div id="attempt-root">
+        <div class="card-numbers" aria-label="Навигация по карточкам">
+            {% for card in attempt.cards %}
+                <button class="card-number"
+                        type="button"
+                        data-card-id="{{ card.id }}"
+                        data-index="{{ loop.index0 }}">
+                    {{ loop.index }}
+                </button>
+            {% endfor %}
+        </div>
+
+        <div class="cards-wrapper">
+            {% for card in attempt.cards %}
+                <article class="task-card"
+                         data-card-id="{{ card.id }}"
+                         data-index="{{ loop.index0 }}">
+
+                    <div class="task-card-header">
+                        <h2>Карточка {{ loop.index }} из {{ attempt.cards | length }}</h2>
+
+                        {% if card.card_type == "theory" %}
+                            <span class="badge">Теория</span>
+                        {% else %}
+                            <span class="badge">Практика</span>
+                        {% endif %}
+                    </div>
+
+                    <div class="question">
+                        {{ card.question | safe }}
+                    </div>
+
+                    <div class="options">
+                        {% for option in card.options %}
+                            <label class="option-item">
+                                <input type="checkbox"
+                                       value="{{ option.id }}"
+                                       data-card-id="{{ card.id }}">
+
+                                <span>{{ option.option_text | safe }}</span>
+                            </label>
+                        {% endfor %}
+                    </div>
+
+                    <div class="card-feedback" hidden></div>
+                </article>
+            {% endfor %}
+        </div>
+
+        <div class="attempt-controls">
+            <button class="button secondary"
+                    type="button"
+                    id="prev-card">
+                Назад
+            </button>
+
+            <button class="button secondary"
+                    type="button"
+                    id="next-card">
+                Вперёд
+            </button>
+
+            <button class="button primary"
+                    type="button"
+                    id="finish-attempt">
+                Завершить вариант
+            </button>
+        </div>
+    </div>
+</section>
+
+<script id="attempt-data-json" type="application/json">
+{{ attempt_json | safe }}
+</script>
+
+<script src="{{ url_for('static', path='/js/attempt.js') }}"></script>
+{% endblock %}

@@ -1,0 +1,790 @@
+/* =========================
+   ОБЩИЕ НАСТРОЙКИ
+   ========================= */
+
+:root {
+    --blue-950: #082f49;
+    --blue-900: #0c4a6e;
+    --blue-800: #075985;
+    --blue-700: #0369a1;
+    --blue-600: #0284c7;
+    --blue-500: #0ea5e9;
+    --blue-400: #38bdf8;
+    --blue-300: #7dd3fc;
+    --blue-200: #bae6fd;
+    --blue-100: #e0f2fe;
+    --blue-50: #f0f9ff;
+
+    --white: #ffffff;
+    --text-main: #102a43;
+    --text-muted: #557086;
+
+    --green-bg: #dff8ec;
+    --green-border: #22c55e;
+    --green-text: #166534;
+
+    --red-bg: #ffe4e6;
+    --red-border: #fb7185;
+    --red-text: #9f1239;
+
+    --gray-bg: #e5e7eb;
+    --gray-border: #9ca3af;
+    --gray-text: #4b5563;
+
+    --shadow-soft: 0 18px 45px rgba(8, 47, 73, 0.12);
+    --shadow-small: 0 8px 20px rgba(8, 47, 73, 0.10);
+
+    --radius-big: 24px;
+    --radius-medium: 18px;
+    --radius-small: 12px;
+}
+
+* {
+    box-sizing: border-box;
+}
+
+html {
+    min-height: 100%;
+}
+
+body {
+    min-height: 100vh;
+    margin: 0;
+    font-family: Arial, Helvetica, sans-serif;
+    color: var(--text-main);
+    background:
+        radial-gradient(circle at 12% 20%, rgba(186, 230, 253, 0.85) 0 120px, transparent 121px),
+        radial-gradient(circle at 85% 12%, rgba(125, 211, 252, 0.45) 0 160px, transparent 161px),
+        radial-gradient(circle at 75% 85%, rgba(224, 242, 254, 0.95) 0 210px, transparent 211px),
+        linear-gradient(135deg, #f0f9ff 0%, #e0f2fe 38%, #dbeafe 100%);
+    background-attachment: fixed;
+    overflow-x: hidden;
+    position: relative;
+}
+
+/* Декоративный слой с математическими символами */
+body::before {
+    content:
+        "∫   dx   ∑   π   √x   f(x)   ∞   Δ   "
+        "∫₀¹   x²   α   β   lim   dy   ∂   "
+        "∫   dx   ∑   π   √x   f(x)   ∞   Δ";
+    position: fixed;
+    inset: 0;
+    z-index: -2;
+    color: rgba(3, 105, 161, 0.075);
+    font-size: 34px;
+    line-height: 2.4;
+    letter-spacing: 18px;
+    word-spacing: 22px;
+    transform: rotate(-8deg) scale(1.15);
+    transform-origin: center;
+    pointer-events: none;
+    user-select: none;
+    white-space: pre-wrap;
+}
+
+/* Декоративный слой с цветочками */
+body::after {
+    content:
+        "✿        ❀              ✿"
+        "          ❁       ✿        "
+        "❀              ✿          ❁"
+        "       ✿              ❀    ";
+    position: fixed;
+    inset: 0;
+    z-index: -1;
+    color: rgba(14, 165, 233, 0.13);
+    font-size: 42px;
+    line-height: 4;
+    letter-spacing: 48px;
+    word-spacing: 60px;
+    transform: rotate(6deg);
+    pointer-events: none;
+    user-select: none;
+    white-space: pre-wrap;
+}
+
+a {
+    color: inherit;
+    text-decoration: none;
+}
+
+button,
+input {
+    font: inherit;
+}
+
+.container {
+    width: min(1120px, calc(100% - 32px));
+    margin: 0 auto;
+}
+
+/* =========================
+   ШАПКА
+   ========================= */
+
+.site-header {
+    position: sticky;
+    top: 0;
+    z-index: 10;
+    background: rgba(240, 249, 255, 0.86);
+    border-bottom: 1px solid rgba(14, 165, 233, 0.22);
+    backdrop-filter: blur(16px);
+}
+
+.header-inner {
+    min-height: 70px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 24px;
+}
+
+.logo {
+    display: inline-flex;
+    align-items: center;
+    gap: 12px;
+    color: var(--blue-900);
+    text-decoration: none;
+}
+
+
+.logo-soft {
+    font-family: "Caveat", cursive;
+    font-size: 38px;
+    font-weight: 700;
+    letter-spacing: 0.7px;
+    color: #075985;
+    text-shadow:
+        0 2px 0 rgba(255, 255, 255, 0.9),
+        0 8px 18px rgba(14, 165, 233, 0.18);
+}
+
+.logo-soft:hover {
+    color: #0284c7;
+}
+
+.logo::before {
+    content: "∫";
+    width: 41px;
+    height: 41px;
+    font-size: 23px;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    border-radius: 50%;
+    color: var(--white);
+    background: linear-gradient(135deg, var(--blue-700), var(--blue-400));
+    box-shadow: var(--shadow-small);
+}
+
+.main-nav {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    flex-wrap: wrap;
+}
+
+.main-nav a {
+    padding: 9px 14px;
+    border-radius: 999px;
+    color: var(--blue-900);
+    font-weight: 600;
+    transition: 0.18s ease;
+}
+
+.main-nav a:hover {
+    background: rgba(14, 165, 233, 0.13);
+    color: var(--blue-700);
+}
+
+/* =========================
+   ОСНОВНОЙ КОНТЕНТ
+   ========================= */
+
+.page-content {
+    padding: 34px 0 56px;
+}
+
+.hero,
+.page-title,
+.empty-state,
+.result-panel,
+.task-card {
+    background: rgba(255, 255, 255, 0.88);
+    border: 1px solid rgba(14, 165, 233, 0.22);
+    border-radius: var(--radius-big);
+    box-shadow: var(--shadow-soft);
+    backdrop-filter: blur(12px);
+}
+
+.hero,
+.page-title,
+.empty-state {
+    padding: 30px;
+    margin-bottom: 24px;
+    position: relative;
+    overflow: hidden;
+}
+
+.hero::after,
+.page-title::after,
+.empty-state::after {
+    content: "✿";
+    position: absolute;
+    right: 28px;
+    top: 20px;
+    font-size: 54px;
+    color: rgba(14, 165, 233, 0.15);
+}
+
+.hero h1,
+.page-title h1,
+.empty-state h1 {
+    margin: 0 0 12px;
+    color: var(--blue-950);
+    font-size: clamp(28px, 4vw, 44px);
+    line-height: 1.12;
+}
+
+.hero p,
+.page-title p,
+.empty-state p {
+    max-width: 780px;
+    margin: 0;
+    color: var(--text-muted);
+    font-size: 17px;
+    line-height: 1.65;
+}
+
+/* =========================
+   КАРТОЧКИ РЕЖИМОВ
+   ========================= */
+
+.mode-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 18px;
+}
+
+.mode-card,
+.mode-card-form {
+    min-height: 210px;
+    padding: 24px;
+    background:
+        linear-gradient(145deg, rgba(255, 255, 255, 0.95), rgba(224, 242, 254, 0.78));
+    border: 1px solid rgba(14, 165, 233, 0.28);
+    border-radius: var(--radius-big);
+    box-shadow: var(--shadow-small);
+    transition: transform 0.18s ease, box-shadow 0.18s ease, border-color 0.18s ease;
+    position: relative;
+    overflow: hidden;
+}
+
+.mode-card::before,
+.mode-card-form::before {
+    content: "∫";
+    position: absolute;
+    right: 18px;
+    bottom: -20px;
+    font-size: 110px;
+    font-weight: 700;
+    color: rgba(14, 165, 233, 0.10);
+}
+
+.mode-card:hover,
+.mode-card-form:hover {
+    transform: translateY(-5px);
+    border-color: rgba(2, 132, 199, 0.65);
+    box-shadow: 0 24px 50px rgba(8, 47, 73, 0.16);
+}
+
+.mode-card h2,
+.mode-card-form h2 {
+    margin: 0 0 12px;
+    color: var(--blue-900);
+    font-size: 25px;
+}
+
+.mode-card p,
+.mode-card-form p {
+    margin: 0;
+    color: var(--text-muted);
+    line-height: 1.55;
+}
+
+.mode-card-form {
+    padding: 0;
+}
+
+.mode-card-form button {
+    width: 100%;
+    min-height: 210px;
+    padding: 24px;
+    border: 0;
+    background: transparent;
+    text-align: left;
+    color: inherit;
+    cursor: pointer;
+}
+
+/* =========================
+   ВЫБОР ТЕМ
+   ========================= */
+
+.topic-form {
+    margin-top: 20px;
+}
+
+.topics-list {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 14px;
+    margin-bottom: 24px;
+}
+
+.topic-item {
+    display: flex;
+    align-items: flex-start;
+    gap: 12px;
+    padding: 18px;
+    border-radius: var(--radius-medium);
+    border: 1px solid rgba(14, 165, 233, 0.25);
+    background: rgba(255, 255, 255, 0.88);
+    box-shadow: var(--shadow-small);
+    cursor: pointer;
+    transition: 0.18s ease;
+}
+
+.topic-item:hover {
+    transform: translateY(-2px);
+    border-color: var(--blue-500);
+    background: rgba(240, 249, 255, 0.96);
+}
+
+.topic-item input {
+    width: 19px;
+    height: 19px;
+    margin-top: 2px;
+    accent-color: var(--blue-600);
+}
+
+.topic-item strong {
+    display: block;
+    color: var(--blue-950);
+    margin-bottom: 5px;
+}
+
+.topic-item small {
+    display: block;
+    color: var(--text-muted);
+    line-height: 1.45;
+}
+
+/* =========================
+   КНОПКИ И СООБЩЕНИЯ
+   ========================= */
+
+.form-actions,
+.attempt-controls {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    flex-wrap: wrap;
+}
+
+.button {
+    min-height: 42px;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    padding: 10px 18px;
+    border-radius: 999px;
+    border: 1px solid transparent;
+    cursor: pointer;
+    font-weight: 700;
+    transition: 0.18s ease;
+}
+
+.button.primary {
+    background: linear-gradient(135deg, var(--blue-700), var(--blue-500));
+    color: var(--white);
+    box-shadow: 0 10px 22px rgba(2, 132, 199, 0.24);
+}
+
+.button.primary:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 14px 28px rgba(2, 132, 199, 0.32);
+}
+
+.button.secondary {
+    color: var(--blue-800);
+    background: rgba(255, 255, 255, 0.9);
+    border-color: rgba(14, 165, 233, 0.35);
+}
+
+.button.secondary:hover {
+    background: var(--blue-50);
+    border-color: var(--blue-500);
+}
+
+.button:disabled {
+    opacity: 0.6;
+    cursor: not-allowed;
+    transform: none;
+}
+
+.alert {
+    padding: 16px 18px;
+    margin: 18px 0;
+    border-radius: var(--radius-medium);
+    background: rgba(255, 255, 255, 0.92);
+    border: 1px solid rgba(14, 165, 233, 0.28);
+    box-shadow: var(--shadow-small);
+}
+
+.alert-error {
+    background: var(--red-bg);
+    color: var(--red-text);
+    border-color: var(--red-border);
+}
+
+/* =========================
+   СТРАНИЦА ВАРИАНТА
+   ========================= */
+
+.attempt-header {
+    display: flex;
+    align-items: flex-start;
+    justify-content: space-between;
+    gap: 20px;
+    margin-bottom: 22px;
+}
+
+.attempt-header h1 {
+    margin: 0 0 8px;
+    color: var(--blue-950);
+    font-size: clamp(26px, 4vw, 40px);
+}
+
+.attempt-header p {
+    margin: 0;
+    color: var(--text-muted);
+    line-height: 1.5;
+}
+
+.card-numbers {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 9px;
+    margin-bottom: 22px;
+    padding: 14px;
+    border-radius: var(--radius-big);
+    background: rgba(255, 255, 255, 0.66);
+    border: 1px solid rgba(14, 165, 233, 0.18);
+    box-shadow: var(--shadow-small);
+}
+
+.card-number {
+    width: 42px;
+    height: 42px;
+    border-radius: 14px;
+    border: 1px solid rgba(14, 165, 233, 0.34);
+    background: rgba(255, 255, 255, 0.94);
+    color: var(--blue-900);
+    font-weight: 800;
+    cursor: pointer;
+    transition: 0.16s ease;
+}
+
+.card-number:hover {
+    transform: translateY(-2px);
+    border-color: var(--blue-600);
+}
+
+.card-number.active {
+    outline: 3px solid rgba(2, 132, 199, 0.24);
+    background: var(--blue-600);
+    color: var(--white);
+}
+
+.card-number.answered {
+    background: var(--blue-100);
+    border-color: var(--blue-500);
+}
+
+.card-number.not-answered {
+    background: rgba(255, 255, 255, 0.96);
+}
+
+.card-number.correct {
+    background: var(--green-bg);
+    border-color: var(--green-border);
+    color: var(--green-text);
+}
+
+.card-number.incorrect {
+    background: var(--red-bg);
+    border-color: var(--red-border);
+    color: var(--red-text);
+}
+
+.card-number.unanswered {
+    background: var(--gray-bg);
+    border-color: var(--gray-border);
+    color: var(--gray-text);
+}
+
+.task-card {
+    padding: 28px;
+    margin-bottom: 22px;
+}
+
+.task-card-header {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 14px;
+    margin-bottom: 18px;
+    padding-bottom: 14px;
+    border-bottom: 1px solid rgba(14, 165, 233, 0.18);
+}
+
+.task-card-header h2 {
+    margin: 0;
+    color: var(--blue-950);
+    font-size: 24px;
+}
+
+.badge {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    padding: 7px 12px;
+    border-radius: 999px;
+    color: var(--blue-900);
+    background: var(--blue-100);
+    border: 1px solid rgba(14, 165, 233, 0.25);
+    font-size: 14px;
+    font-weight: 700;
+}
+
+.question {
+    margin-bottom: 22px;
+    font-size: 18px;
+    line-height: 1.7;
+}
+
+.options {
+    display: grid;
+    gap: 12px;
+}
+
+.option-item {
+    display: flex;
+    align-items: flex-start;
+    gap: 12px;
+    padding: 14px 16px;
+    border-radius: var(--radius-medium);
+    border: 1px solid rgba(14, 165, 233, 0.24);
+    background: rgba(240, 249, 255, 0.72);
+    cursor: pointer;
+    transition: 0.16s ease;
+}
+
+.option-item:hover {
+    background: rgba(224, 242, 254, 0.94);
+    border-color: var(--blue-500);
+}
+
+.option-item input {
+    width: 19px;
+    height: 19px;
+    margin-top: 2px;
+    accent-color: var(--blue-600);
+}
+
+.option-item span {
+    line-height: 1.5;
+}
+
+/* =========================
+   РЕЗУЛЬТАТЫ
+   ========================= */
+
+.result-panel {
+    padding: 22px;
+    margin-bottom: 22px;
+}
+
+.result-panel h2 {
+    margin: 0 0 16px;
+    color: var(--blue-950);
+}
+
+.result-grid {
+    display: grid;
+    grid-template-columns: repeat(5, 1fr);
+    gap: 12px;
+}
+
+.result-grid div {
+    padding: 16px;
+    border-radius: var(--radius-medium);
+    background: linear-gradient(145deg, var(--blue-50), var(--blue-100));
+    border: 1px solid rgba(14, 165, 233, 0.22);
+    text-align: center;
+}
+
+.result-grid strong {
+    display: block;
+    color: var(--blue-900);
+    font-size: 28px;
+    margin-bottom: 4px;
+}
+
+.result-grid span {
+    color: var(--text-muted);
+    font-size: 14px;
+}
+
+.result-note {
+    margin: 16px 0 0;
+    color: var(--text-muted);
+    line-height: 1.5;
+}
+
+.card-feedback {
+    margin-top: 22px;
+    padding: 18px;
+    border-radius: var(--radius-medium);
+}
+
+.card-feedback h3 {
+    margin: 0 0 10px;
+}
+
+.feedback-correct {
+    background: var(--green-bg);
+    color: var(--green-text);
+    border: 1px solid var(--green-border);
+}
+
+.feedback-incorrect {
+    background: var(--red-bg);
+    color: var(--red-text);
+    border: 1px solid var(--red-border);
+}
+
+.feedback-unanswered {
+    background: var(--gray-bg);
+    color: var(--gray-text);
+    border: 1px solid var(--gray-border);
+}
+
+.answer-comparison {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 14px;
+}
+
+.answer-comparison > div {
+    background: rgba(255, 255, 255, 0.55);
+    border-radius: var(--radius-small);
+    padding: 12px;
+}
+
+.answer-comparison h4 {
+    margin: 0 0 8px;
+}
+
+.answer-comparison ul {
+    margin: 0;
+    padding-left: 20px;
+}
+
+/* =========================
+   KATEX И МАТЕМАТИКА
+   ========================= */
+
+.katex {
+    color: var(--blue-950);
+}
+
+.question .katex-display {
+    padding: 10px 0;
+}
+
+/* =========================
+   АДАПТИВНОСТЬ
+   ========================= */
+
+@media (max-width: 900px) {
+    .mode-grid,
+    .topics-list,
+    .result-grid,
+    .answer-comparison {
+        grid-template-columns: 1fr;
+    }
+
+    .attempt-header {
+        flex-direction: column;
+    }
+}
+
+@media (max-width: 640px) {
+    .container {
+        width: min(100% - 22px, 1120px);
+    }
+
+    .header-inner {
+        min-height: auto;
+        padding: 14px 0;
+        flex-direction: column;
+        align-items: flex-start;
+    }
+
+    .main-nav {
+        width: 100%;
+    }
+
+    .main-nav a {
+        padding: 8px 11px;
+        background: rgba(255, 255, 255, 0.55);
+    }
+
+    .hero,
+    .page-title,
+    .empty-state,
+    .task-card,
+    .result-panel {
+        border-radius: 18px;
+        padding: 20px;
+    }
+
+    .card-number {
+        width: 38px;
+        height: 38px;
+        border-radius: 12px;
+    }
+
+    .attempt-controls {
+        flex-direction: column;
+        align-items: stretch;
+    }
+
+    .attempt-controls .button,
+    .attempt-controls button {
+        width: 100%;
+    }
+
+    body::before {
+        font-size: 26px;
+        letter-spacing: 12px;
+    }
+
+    body::after {
+        font-size: 32px;
+        letter-spacing: 32px;
+    }
+}

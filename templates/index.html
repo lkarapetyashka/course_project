@@ -1,0 +1,42 @@
+{% extends "base.html" %}
+
+{% block title %}Главная — Тренажёр интегралов{% endblock %}
+
+{% block content %}
+<section class="hero">
+    <h1>Тренажёр по интегральному исчислению</h1>
+
+    <p>
+        Выберите режим работы. В режимах теории и практики можно выбрать
+        одну или несколько тем. Будет составлен вариант из карточек по выбранным темам.
+    </p>
+</section>
+
+<section class="mode-grid">
+    <a class="mode-card" href="/select-topic/theory">
+        <h2>Теория</h2>
+        <p>
+            Определения, свойства, теоремы и следствия.
+            Нужно выбрать одно или несколько верных утверждений.
+        </p>
+    </a>
+
+    <a class="mode-card" href="/select-topic/practice">
+        <h2>Практика</h2>
+        <p>
+            Задачи на вычисление интегралов, применение формул
+            и выбор правильного ответа.
+        </p>
+    </a>
+
+    <form class="mode-card mode-card-form" method="post" action="/attempt/errors">
+        <button type="submit">
+            <h2>Отработка ошибок</h2>
+            <p>
+                Вариант из всех карточек, которые ранее были решены
+                неверно.
+            </p>
+        </button>
+    </form>
+</section>
+{% endblock %}

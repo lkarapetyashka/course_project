@@ -1,0 +1,9 @@
+__pycache__/
+.venv/
+.vscode/
+*.log
+data/
+.env
+.env.*
+*.zip
+*.docx

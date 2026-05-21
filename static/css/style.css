@@ -505,7 +505,7 @@ input {
 .card-number.active {
     outline: 3px solid rgba(2, 132, 199, 0.24);
     background: var(--blue-600);
-    color: var(--white);
+    color: var(--blue-1900);
 }
 
 .card-number.answered {
